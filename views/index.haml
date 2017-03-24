@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title My MBTA Schedule
+    %link{rel: "stylesheet", href: "styles.css"}/
+  %body
+    %h1 My MBTA Schedule
+    - schedule.each do |stop, arrivals|
+      %h2= stop
+      %p.arrivals= arrivals.map { |a| "#{(a / 60).to_i} mins" }.join(", ")
