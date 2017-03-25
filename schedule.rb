@@ -8,8 +8,7 @@ class Schedule
     "Harvard to Boston" => [2168, 1],
   }
 
-  # TODO: Change to mine
-  API_KEY = 'wX9NwuHnZU2ToO7GmGR9uw'
+  API_KEY = ENV['MBTA_API_KEY']
 
   # Returns a hash with the keys being the route names, and the
   # values being lists of arrival times in seconds.
