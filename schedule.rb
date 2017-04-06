@@ -33,6 +33,8 @@ class Schedule
         format: 'json'
       }).body)
 
+      return [] if json['mode'].nil?
+
       puts "Warning: More than 1 modes. Taking the first. " unless json['mode'].size == 1
       json = json['mode'][0]
       puts "Warning: More than 1 routes. Taking the first. " unless json['route'].size == 1
