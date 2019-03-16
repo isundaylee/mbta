@@ -5,7 +5,11 @@
     %link{rel: "stylesheet", href: "styles.css"}/
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}/
   %body
-    %h1 My MBTA Schedule
+    %h1 My Transit Dashboard
+    - bluebikes_status.each do |station, data|
+      %h2= station
+      %p.arrivals
+        = "#{data[:bikes]} bikes, #{data[:docks]} docks"
     - mbta_schedule.each do |stop, arrivals|
       %h2= stop
       %p.arrivals
