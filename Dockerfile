@@ -1,6 +1,6 @@
 FROM 'ruby:2.6-alpine'
 
-RUN bundle config --global frozen 1
+# RUN bundle config --global frozen 1
 
 RUN apk add --update \
   build-base

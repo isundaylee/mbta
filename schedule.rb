@@ -1,3 +1,25 @@
+require 'jsonapi/consumer'
+
+class Base < JSONAPI::Consumer::Resource
+  self.site = 'https://api-v3.mbta.com/'
+  self.connection_options = {
+    params: {api_key: ENV['MBTA_API_KEY']},
+  }
+end
+
+class Route < Base
+  class Type
+    BUS = 3
+  end
+end
+
+class Prediction < Base
+  has_one :route
+
+  property :arrival_time, type: :time
+  property :departure_time, type: :time
+end
+
 class Schedule
   # Route name => [Stop ID, Bus ID]
   ROUTES = {
@@ -7,8 +29,6 @@ class Schedule
     "ADP to Boston" => [73, 1],
     "Harvard to Boston" => [2168, 1],
   }
-
-  API_KEY = ENV['MBTA_API_KEY']
 
   # Returns a hash with the keys being the route names, and the
   # values being lists of arrival times in seconds.
@@ -25,24 +45,18 @@ class Schedule
 
   private
     def self.get_predictions(stop, bus)
-      require 'http'
+      return Prediction.includes(:route).find(stop: stop).map do |pred|
+        route = pred.route
 
-      json = JSON.parse(HTTP.get("http://realtime.mbta.com/developer/api/v2/predictionsbystop", params: {
-        api_key: API_KEY,
-        stop: stop,
-        format: 'json'
-      }).body)
+        next if route['type'] != Route::Type::BUS
+        next if route['id'].to_i != bus
 
-      return [] if json['mode'].nil?
-
-      puts "Warning: More than 1 modes. Taking the first. " unless json['mode'].size == 1
-      json = json['mode'][0]
-      puts "Warning: More than 1 routes. Taking the first. " unless json['route'].size == 1
-      json = json['route'][0]
-      puts "Warning: More than 1 directions. Taking the first. " unless json['direction'].size == 1
-      json = json['direction'][0]
-
-      json['trip'].map { |trip| trip['pre_away'].to_i }
+        # Per https://www.mbta.com/developers/v3-api/best-practices
+        seconds_until = (pred.arrival_time || pred.departure_time) - Time.now
+        seconds_until
+      end.compact
     end
+
+  self.get_schedule()
 
 end
