@@ -12,4 +12,4 @@
         - if arrivals.empty?
           No predictions.
         - else
-          = arrivals.map { |a| "#{(a / 60).to_i} mins" }.join(", ")
+          = arrivals.take(5).map { |a| "#{(a / 60).to_i} mins" }.join(", ")
