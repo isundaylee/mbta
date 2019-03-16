@@ -6,7 +6,7 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}/
   %body
     %h1 My MBTA Schedule
-    - schedule.each do |stop, arrivals|
+    - mbta_schedule.each do |stop, arrivals|
       %h2= stop
       %p.arrivals
         - if arrivals.empty?
