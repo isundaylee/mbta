@@ -20,7 +20,7 @@ class Prediction < Base
   property :departure_time, type: :time
 end
 
-class Schedule
+class MBTA
   # Route name => [Stop ID, Bus ID]
   ROUTES = {
     "MIT to Harvard" => [97, 1],
