@@ -10,6 +10,15 @@ require_relative './bluebikes'
 also_reload 'mbta.rb'
 also_reload 'bluebikes.rb'
 
+# Route name => [Stop ID, Bus ID]
+MBTA_ROUTES = {
+  "MIT to Harvard" => [107, 1],
+  "MIT to Boston" => [75, 1],
+  "ADP to Harvard" => [101, 1],
+  "ADP to Boston" => [73, 1],
+  "Harvard to Boston" => [2168, 1],
+}
+
 BLUEBIKES_STATIONS = {
   'Ashdown': 178,
   'BCS': 80,
@@ -35,7 +44,7 @@ end
 
 get '/' do
   haml :index, format: :html5, locals: {
-    mbta_schedule: MBTA.get_schedule,
+    mbta_routes: MBTA_ROUTES,
     bluebikes_stations: BLUEBIKES_STATIONS,
   }
 end

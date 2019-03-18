@@ -5,6 +5,7 @@
     %link{rel: "stylesheet", href: "styles.css"}/
     %script{src: 'https://cdn.jsdelivr.net/npm/cash-dom@3.0.0/dist/cash.min.js'}
     %script{src: 'https://unpkg.com/axios/dist/axios.min.js'}
+    %script{src: 'https://underscorejs.org/underscore-min.js'}
     %script{src: 'index.js'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}/
     %link{rel: 'apple-touch-icon', sizes: '120x120', href: 'touch-icon-120.png'}
@@ -14,6 +15,7 @@
     %script
       = "window.data = {}"
       = "window.data.bluebikes_station_ids = #{JSON.generate(bluebikes_stations.values)}"
+      = "window.data.mbta_route_ids = #{JSON.generate(mbta_routes.values)}"
   %body
     %h1 My Transit Dashboard
     - bluebikes_stations.each do |name, station_id|
@@ -23,10 +25,7 @@
         bikes
         %span{id: "bluebikes_#{station_id}_docks"} ...
         docks
-    - mbta_schedule.each do |stop, arrivals|
-      %h2= stop
+    - mbta_routes.each do |name, ids|
+      %h2= name
       %p.arrivals
-        - if arrivals.empty?
-          No predictions.
-        - else
-          = arrivals.take(5).map { |a| "#{(a / 60).to_i} mins" }.join(", ")
+        %span{id: "mbta_#{ids[0]}_#{ids[1]}_predictions"} ...
