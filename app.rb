@@ -1,8 +1,12 @@
 require 'sinatra'
 require 'sinatra/json'
+require 'sinatra/reloader'
 
 require_relative './mbta'
 require_relative './bluebikes'
+
+also_reload 'mbta.rb'
+also_reload 'bluebikes.rb'
 
 get '/api/bluebikes/:station_id' do
   station_id = params[:station_id].to_i
