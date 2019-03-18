@@ -1,3 +1,5 @@
+require 'json'
+
 require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/reloader'
@@ -7,6 +9,16 @@ require_relative './bluebikes'
 
 also_reload 'mbta.rb'
 also_reload 'bluebikes.rb'
+
+BLUEBIKES_STATIONS = {
+  'Ashdown': 178,
+  'BCS': 80,
+  'Flour': 184,
+  'Trader Joe\'s': 105,
+  'H-Mart': 68,
+  'Kendall': 189,
+  'Ames St': 107,
+}
 
 get '/api/bluebikes/:station_id' do
   station_id = params[:station_id].to_i
@@ -24,6 +36,6 @@ end
 get '/' do
   haml :index, format: :html5, locals: {
     mbta_schedule: MBTA.get_schedule,
-    bluebikes_status: Bluebikes.get_status,
+    bluebikes_stations: BLUEBIKES_STATIONS,
   }
 end

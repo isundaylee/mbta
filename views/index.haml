@@ -3,17 +3,26 @@
   %head
     %title My MBTA Schedule
     %link{rel: "stylesheet", href: "styles.css"}/
+    %script{src: 'https://cdn.jsdelivr.net/npm/cash-dom@3.0.0/dist/cash.min.js'}
+    %script{src: 'https://unpkg.com/axios/dist/axios.min.js'}
+    %script{src: 'index.js'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}/
     %link{rel: 'apple-touch-icon', sizes: '120x120', href: 'touch-icon-120.png'}
     %link{rel: 'apple-touch-icon', sizes: '152x152', href: 'touch-icon-152.png'}
     %link{rel: 'apple-touch-icon', sizes: '167x167', href: 'touch-icon-167.png'}
     %link{rel: 'apple-touch-icon', sizes: '180x180', href: 'touch-icon-180.png'}
+    %script
+      = "window.data = {}"
+      = "window.data.bluebikes_station_ids = #{JSON.generate(bluebikes_stations.values)}"
   %body
     %h1 My Transit Dashboard
-    - bluebikes_status.each do |station, data|
-      %h2= station
+    - bluebikes_stations.each do |name, station_id|
+      %h2= name
       %p.arrivals
-        = "#{data[:bikes]} bikes, #{data[:docks]} docks"
+        %span{id: "bluebikes_#{station_id}_bikes"} ...
+        bikes
+        %span{id: "bluebikes_#{station_id}_docks"} ...
+        docks
     - mbta_schedule.each do |stop, arrivals|
       %h2= stop
       %p.arrivals
