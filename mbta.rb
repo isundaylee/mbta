@@ -23,7 +23,7 @@ end
 class MBTA
   # Route name => [Stop ID, Bus ID]
   ROUTES = {
-    "MIT to Harvard" => [97, 1],
+    "MIT to Harvard" => [107, 1],
     "MIT to Boston" => [75, 1],
     "ADP to Harvard" => [101, 1],
     "ADP to Boston" => [73, 1],
@@ -41,6 +41,10 @@ class MBTA
     end
 
     results
+  end
+
+  def self.get_bus_predictions(stop_id, bus_id)
+    get_predictions(stop_id, bus_id)
   end
 
   private
