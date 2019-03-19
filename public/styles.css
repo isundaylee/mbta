@@ -23,13 +23,13 @@ table#content tr:nth-child(2n+1) {
 table#content td.name {
   text-align: center;
   width: 39%;
-  font-size: 1.2em;
+  font-size: 1.0em;
   padding: 10px 0;
 }
 
 table#content td.value {
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.0em;
 }
 
 .mbta_predictions span {
