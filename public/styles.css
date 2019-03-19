@@ -49,6 +49,10 @@ table#content td.value {
   width: 20%;
 }
 
+.mbta_predictions span.no-predictions {
+  width: 100%;
+}
+
 .mbta_predictions span:nth-child(1) {
   color: #000000;
 }

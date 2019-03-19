@@ -39,7 +39,7 @@ $(function() {
       var texts = [];
 
       if (response.data.length == 0) {
-        texts.push($('<span>').text('No predictions'));
+        texts.push($('<span>').addClass('no-predictions').text('No predictions'));
       } else {
         _.each(_.first(response.data, 5), function(time) {
           texts.push($('<span>').text(Math.floor(time / 60.0) + 'm'));
