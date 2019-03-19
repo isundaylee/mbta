@@ -30,5 +30,4 @@
       - mbta_routes.each do |name, ids|
         %tr
           %td.name= name
-          %td.value
-            %span{id: "mbta_#{ids[0]}_#{ids[1]}_predictions"} ...
+          %td.value.mbta_predictions{id: "mbta_#{ids[0]}_#{ids[1]}_predictions"}

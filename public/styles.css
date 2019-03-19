@@ -31,3 +31,13 @@ table#content td.value {
   text-align: center;
   font-size: 1.1em;
 }
+
+.mbta_predictions span {
+  color: #bbbbbb;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.mbta_predictions span:nth-child(1) {
+  color: #000000;
+}

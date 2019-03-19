@@ -21,16 +21,20 @@ $(function() {
         return;
       }
 
-      var text = 'No predictions';
-      if (response.data.length > 0) {
-        times = _.first(response.data, 5);
-        words = _.map(times, function(time) {
-          return Math.floor(time / 60.0) + 'm';
+      var texts = [];
+
+      if (response.data.length == 0) {
+        texts.push($('<span>').text('No predictions'));
+      } else {
+        _.each(_.first(response.data, 5), function(time) {
+          texts.push($('<span>').text(Math.floor(time / 60.0) + 'm'));
         });
-        text = words.join(', ');
       }
 
-      $('#mbta_' + stop_id + '_' + bus_id + '_predictions').text(text);
+      let el = $('#mbta_' + stop_id + '_' + bus_id + '_predictions');
+      _.each(texts, function(text) {
+        el.append(text);
+      });
     });
   });
 });
