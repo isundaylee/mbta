@@ -18,14 +18,17 @@
       = "window.data.mbta_route_ids = #{JSON.generate(mbta_routes.values)}"
   %body
     %h1 My Transit Dashboard
-    - bluebikes_stations.each do |name, station_id|
-      %h2= name
-      %p.arrivals
-        %span{id: "bluebikes_#{station_id}_bikes"} ...
-        bikes
-        %span{id: "bluebikes_#{station_id}_docks"} ...
-        docks
-    - mbta_routes.each do |name, ids|
-      %h2= name
-      %p.arrivals
-        %span{id: "mbta_#{ids[0]}_#{ids[1]}_predictions"} ...
+    %table#content
+      - bluebikes_stations.each do |name, station_id|
+        %tr
+          %td.name= name
+          %td.value
+            %span{id: "bluebikes_#{station_id}_bikes"} ...
+            bikes
+            %span{id: "bluebikes_#{station_id}_docks"} ...
+            docks
+      - mbta_routes.each do |name, ids|
+        %tr
+          %td.name= name
+          %td.value
+            %span{id: "mbta_#{ids[0]}_#{ids[1]}_predictions"} ...
