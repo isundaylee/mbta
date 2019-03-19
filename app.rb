@@ -14,8 +14,6 @@ also_reload 'bluebikes.rb'
 MBTA_ROUTES = {
   "MIT to Harvard" => [107, 1],
   "MIT to Boston" => [75, 1],
-  "ADP to Harvard" => [101, 1],
-  "ADP to Boston" => [73, 1],
   "Harvard to Boston" => [2168, 1],
 }
 
