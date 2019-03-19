@@ -27,8 +27,6 @@ $(function() {
         words = _.map(times, function(time) {
           return Math.floor(time / 60.0) + 'm';
         });
-        console.log(times);
-        console.log(words);
         text = words.join(', ');
       }
 
