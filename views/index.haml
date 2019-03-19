@@ -22,11 +22,7 @@
       - bluebikes_stations.each do |name, station_id|
         %tr
           %td.name= name
-          %td.value
-            %span{id: "bluebikes_#{station_id}_bikes"} ...
-            bikes
-            %span{id: "bluebikes_#{station_id}_docks"} ...
-            docks
+          %td.value.bluebikes_status{id: "bluebikes_#{station_id}_bikes"}
       - mbta_routes.each do |name, ids|
         %tr
           %td.name= name

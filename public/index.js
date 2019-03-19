@@ -6,8 +6,23 @@ $(function() {
         return;
       }
 
-      $('#bluebikes_' + station_id + '_bikes').text(response.data.bikes);
-      $('#bluebikes_' + station_id + '_docks').text(response.data.docks);
+      let el_bikes = $('<span>').text(response.data.bikes + " bikes");
+      let el_docks = $('<span>').text(response.data.docks + " docks");
+
+      if (response.data.bikes <= 5) {
+        el_bikes.addClass('low');
+      } else if (response.data.bikes <= 2) {
+        el_bikes.addClass('verylow');
+      }
+
+      if (response.data.docks <= 5) {
+        el_docks.addClass('low');
+      } else if (response.data.docks <= 2) {
+        el_docks.addClass('verylow');
+      }
+
+      $('#bluebikes_' + station_id + '_bikes').append(el_bikes);
+      $('#bluebikes_' + station_id + '_bikes').append(el_docks);
     });
   });
 

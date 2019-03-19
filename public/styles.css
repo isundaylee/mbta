@@ -41,3 +41,16 @@ table#content td.value {
 .mbta_predictions span:nth-child(1) {
   color: #000000;
 }
+
+.bluebikes_status span {
+  display: inline-block;
+  margin: 0 6px;
+}
+
+.bluebikes_status span.low {
+  color: #fc5a0f;
+}
+
+.bluebikes_status span.verylow {
+  color: red;
+}
