@@ -11,6 +11,15 @@ h1 {
 table#content{
   width: 100%;
   border-collapse: collapse;
+  border: none;
+}
+
+table#content tr {
+  border: none;
+}
+
+table#content td {
+  border: none;
 }
 
 table#content tr:nth-child(2n) {
@@ -28,14 +37,16 @@ table#content td.name {
 }
 
 table#content td.value {
-  text-align: center;
+  text-align: left;
   font-size: 1.0em;
+  padding: 0;
 }
 
 .mbta_predictions span {
+  text-align: center;
   color: #bbbbbb;
   display: inline-block;
-  margin: 0 3px;
+  width: 20%;
 }
 
 .mbta_predictions span:nth-child(1) {
@@ -43,14 +54,18 @@ table#content td.value {
 }
 
 .bluebikes_status span {
+  text-align: center;
   display: inline-block;
-  margin: 0 6px;
+  width: 50%;
+  padding: 10px 0;
 }
 
 .bluebikes_status span.low {
-  color: #fc5a0f;
+  background-color: #fc5a0f;
+  color: #ffffff;
 }
 
 .bluebikes_status span.verylow {
-  color: red;
+  background-color: red;
+  color: #ffffff;
 }

@@ -9,16 +9,16 @@ $(function() {
       let el_bikes = $('<span>').text(response.data.bikes + " bikes");
       let el_docks = $('<span>').text(response.data.docks + " docks");
 
-      if (response.data.bikes <= 5) {
-        el_bikes.addClass('low');
-      } else if (response.data.bikes <= 2) {
+      if (response.data.bikes < 3) {
         el_bikes.addClass('verylow');
+      } else if (response.data.bikes < 6) {
+        el_bikes.addClass('low');
       }
 
-      if (response.data.docks <= 5) {
-        el_docks.addClass('low');
-      } else if (response.data.docks <= 2) {
+      if (response.data.docks < 3) {
         el_docks.addClass('verylow');
+      } else if (response.data.docks < 6) {
+        el_docks.addClass('low');
       }
 
       $('#bluebikes_' + station_id + '_bikes').append(el_bikes);
