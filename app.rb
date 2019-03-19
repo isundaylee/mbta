@@ -12,9 +12,9 @@ also_reload 'bluebikes.rb'
 
 # Route name => [Stop ID, Bus ID]
 MBTA_ROUTES = {
-  "MIT to Harvard" => [107, 1],
-  "MIT to Boston" => [75, 1],
-  "Harvard to Boston" => [2168, 1],
+  "MIT Out" => [107, 1],
+  "MIT In" => [75, 1],
+  "Harvard In" => [2168, 1],
 }
 
 BLUEBIKES_STATIONS = {
