@@ -25,6 +25,7 @@ BLUEBIKES_STATIONS = {
   'H-Mart': 68,
   'Kendall': 189,
   'Ames St': 107,
+  'Starbucks': 318,
 }
 
 get '/api/bluebikes/:station_id' do
